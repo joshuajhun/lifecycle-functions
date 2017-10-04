@@ -4,7 +4,8 @@ export default class Display extends Component {
   constructor() {
     super()
     this.state ={
-      lit: 'its always lit'
+      lit: 'its always lit',
+      color: 'red',
     }
   }
 
@@ -22,7 +23,7 @@ export default class Display extends Component {
 
   componentWillUpdate(nextProps, nextState) {
     if( nextProps.count > 5) {
-      this.yungheader.style = 'color: purple;'
+      this.setState({color: 'purple'})
     }
   }
 
@@ -35,13 +36,18 @@ export default class Display extends Component {
   render() {
 
     const stylez = {
-      color: 'red'
+      red: {
+        color: 'red'
+      },
+      purple: {
+        color: 'purple'
+      }
     }
 
     return (
       <section>
         <h1> is it lit: {this.state.lit}</h1>
-        <h3 style= {stylez} ref= {(element) => this.yungheader = element }> your yung-count: {this.props.count}</h3>
+        <h3 style={stylez[this.state.color]}>your yung-count: {this.props.count}</h3>
       </section>
     )
   }
